@@ -1,4 +1,4 @@
-(ns simple-component.core
+(ns simple-parent.core
   (:require [reagent.core :as reagent]))
 
 (defn simple-component []
@@ -8,5 +8,10 @@
         "I have " [:strong "bold"]
         [:span {:style {:color "red"}} " and red "] "text."]])
 
-(reagent/render-component [simple-component]
+(defn simple-parent []
+      [:div
+       [:p "I include simple-component."]
+       [simple-component]])
+
+(reagent/render-component [simple-parent]
                           (. js/document (getElementById "app")))
